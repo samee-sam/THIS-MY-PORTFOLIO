@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sameera N | Professional Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #9356e3;
+            --primary-light: #f4eeff;
+            --accent: #b085f5;
+            --bg: #fdfbff;
+            --text-main: #2d2d2d;
+            --text-muted: #666666;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(147, 86, 227, 0.1);
+            --radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Scroll Reveal Animation --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Header & Nav --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(147, 86, 227, 0.1);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 180px 8% 120px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--white);
+            text-align: center;
+            clip-path: ellipse(150% 100% at 50% 0%);
+        }
+
+        .hero-tagline {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 25px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            margin-bottom: 20px;
+        }
+
+        .hero-roles {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .role-pill {
+            border: 1px solid rgba(255,255,255,0.5);
+            padding: 6px 22px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+
+        .role-pill:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .hero-desc {
+            max-width: 750px;
+            margin: 0 auto 45px;
+            font-weight: 300;
+            opacity: 0.95;
+            font-size: 1.2rem;
+        }
+
+        /* --- Buttons --- */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+        }
+
+        .btn-light { background: var(--white); color: var(--primary); }
+        .btn-outline { border: 2px solid var(--white); color: var(--white); }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        /* --- Section Titles --- */
+        section { padding: 110px 8%; }
+        .sec-header { text-align: center; margin-bottom: 70px; }
+        
+        .sec-title { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 2.8rem; 
+            margin-top: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .sec-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 25%;
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+
+        section:hover .sec-title::after {
+            width: 80%;
+            left: 10%;
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .card {
+            background: var(--white);
+            padding: 45px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(147, 86, 227, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 0;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .card:hover::before { height: 100%; }
+        .card:hover { transform: translateY(-12px); }
+
+        .icon-circle {
+            width: 65px; height: 65px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+        }
+
+        /* --- Skills --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 25px;
+        }
+        .skill-card {
+            background: var(--white);
+            padding: 35px 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .skill-card i { font-size: 2.2rem; color: var(--primary); margin-bottom: 15px; display: block; }
+        .skill-card:hover { background: var(--primary); transform: scale(1.05); }
+        .skill-card:hover i, .skill-card:hover p { color: var(--white); }
+
+        /* --- Engagement --- */
+        .engagement-card {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--white);
+            padding: 60px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(147, 86, 227, 0.3);
+        }
+
+        /* --- Contact --- */
+        .contact-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+        }
+        .input-group { margin-bottom: 25px; }
+        input, textarea {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            outline: none;
+            background: #fff;
+            transition: var(--transition);
+        }
+        input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
+
+        footer {
+            background: #1a1a1a;
+            color: var(--white);
+            padding: 80px 8% 40px;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 992px) {
+            .grid-2, .contact-wrap { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 3.2rem; }
+            section { padding: 80px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home" class="logo">Sameera N</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certifications">Credentials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <span class="hero-tagline">✨ WELCOME TO MY PORTFOLIO</span>
+        <h1>Sameera N</h1>
+        <div class="hero-roles">
+            <span class="role-pill">HR Specialist</span>
+            <span class="role-pill">Sales Executive</span>
+            <span class="role-pill">Marketing Strategy</span>
+        </div>
+        <p class="hero-desc">Motivated and detail-oriented professional with strong communication, organizational, and digital skills, ready to contribute to organizational growth.</p>
+        <div class="btn-group">
+            <a href="#contact" class="btn btn-light">Get In Touch</a>
+            
+            <a href="https://github.com/samee-sam/resume-1/blob/main/Resume%20of%20Sameera%20N.pdf" 
+               download="Sameera_N_Resume.pdf" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn btn-outline">
+                <i class="fas fa-download"></i> Download CV
+            </a>
+        </div>
+    </header>
+
+    <section id="about" class="reveal">
+        <div class="sec-header">
+            <p style="color: var(--primary); font-weight: 700; letter-spacing: 2px;">✦ ABOUT ME ✦</p>
+            <h2 class="sec-title">Know Me Better</h2>
+        </div>
+        <div class="grid-2">
+            <div class="card">
+                <div class="icon-circle"><i class="fas fa-bullseye"></i></div>
+                <h3>Career Objective</h3>
+                <p style="color: var(--text-muted); margin-top: 15px;">Seeking an internship or entry-level position in HR, Sales, or Marketing. Eager to apply strong communication and organizational skills to drive business success.</p>
+            </div>
+            <div class="card">
+                <div class="icon-circle"><i class="fas fa-university"></i></div>
+                <h3>Education</h3>
+                <p style="margin-top: 15px;"><strong>Bachelor of Commerce (CA)</strong></p>
+                <p style="color: var(--primary); font-weight: 600;">2024 — 2027</p>
+                <p style="color: var(--text-muted);">Rabiammal Ahamed Maideen College for Women, Thiruvarur</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" style="background: var(--primary-light);" class="reveal">
+        <div class="sec-header">
+            <p style="color: var(--primary); font-weight: 700; letter-spacing: 2px;">✦ EXPERTISE ✦</p>
+            <h2 class="sec-title">Core Skills</h2>
+        </div>
+        <div class="skills-container">
+            <div class="skill-card"><i class="fas fa-pen-fancy"></i><p>Business Writing</p></div>
+            <div class="skill-card"><i class="fas fa-comment-dots"></i><p>Public Speaking</p></div>
+            <div class="skill-card"><i class="fas fa-brain"></i><p>Creative Design</p></div>
+            <div class="skill-card"><i class="fas fa-comments"></i><p>Communication</p></div>
+            <div class="skill-card"><i class="fas fa-sync-alt"></i><p>Adaptability</p></div>
+            <div class="skill-card"><i class="fas fa-desktop"></i><p>MS Office</p></div>
+            <div class="skill-card"><i class="fas fa-tasks"></i><p>Strategic Planning</p></div>
+            <div class="skill-card"><i class="fas fa-language"></i><p>Tamil / English</p></div>
+        </div>
+    </section>
+
+    <section id="certifications" class="reveal">
+        <div class="sec-header">
+            <p style="color: var(--primary); font-weight: 700; letter-spacing: 2px;">✦ PROFESSIONAL ✦</p>
+            <h2 class="sec-title">Credentials</h2>
+        </div>
+        <div class="card" style="margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <div>
+                <h3 style="color: var(--primary);">Business Fundamentals for Entrepreneurs</h3>
+                <p>NPTEL (IIT Bombay) | Jan 2025 - Apr 2025</p>
+            </div>
+            <div style="background: var(--primary); color: white; padding: 10px 25px; border-radius: 50px; font-size: 0.9rem; font-weight: 600;">Elite Certification - 90%</div>
+        </div>
+        <div class="card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <div>
+                <h3 style="color: var(--primary);">Communicative English</h3>
+                <p>Rabiammal Ahamed Maideen College | 2024</p>
+            </div>
+            <div style="background: var(--primary-light); color: var(--primary); padding: 10px 25px; border-radius: 50px; font-size: 0.9rem; font-weight: 700;">CERTIFIED</div>
+        </div>
+    </section>
+
+    <section id="engagement" class="reveal">
+        <div class="engagement-card">
+            <span style="background: rgba(255,255,255,0.2); padding: 6px 18px; border-radius: 50px; font-size: 0.8rem; letter-spacing: 1px;">INTERNATIONAL CONFERENCE</span>
+            <h2 style="font-size: 2.5rem; margin: 20px 0;">Fintech: Digital Transformation</h2>
+            <p style="opacity: 0.9; margin-bottom: 25px; font-weight: 500;">ICF 2024 | September 29, 2024</p>
+            <p style="max-width: 800px; margin: 0 auto; line-height: 1.8;">Active participant in global discussions regarding the evolution of digital financial services and the future of Fintech innovation.</p>
+        </div>
+    </section>
+
+    <section id="contact" style="background: #fdfbff;" class="reveal">
+        <div class="sec-header">
+            <p style="color: var(--primary); font-weight: 700; letter-spacing: 2px;">✦ REACH OUT ✦</p>
+            <h2 class="sec-title">Let's Connect</h2>
+        </div>
+        <div class="contact-wrap">
+            <div class="contact-info">
+                <div class="card" style="margin-bottom: 20px;">
+                    <i class="fas fa-envelope" style="color: var(--primary); font-size: 1.5rem;"></i>
+                    <p style="margin-top: 10px;"><strong>Email</strong></p>
+                    <p style="color: var(--text-muted);">Sameera6906@gmail.com</p>
+                </div>
+                <div class="card" style="margin-bottom: 20px;">
+                    <i class="fas fa-phone" style="color: var(--primary); font-size: 1.5rem;"></i>
+                    <p style="margin-top: 10px;"><strong>Phone</strong></p>
+                    <p style="color: var(--text-muted);">+91 9361242146</p>
+                </div>
+            </div>
+            <form class="card">
+                <div class="input-group">
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn" style="background: var(--primary); color: white; width: 100%; justify-content: center; cursor: pointer;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px;">Sameera N</h2>
+        <div style="display: flex; justify-content: center; gap: 25px; margin-bottom: 40px;">
+            <a href="#" style="color: white; font-size: 1.5rem; transition: 0.3s;"><i class="fab fa-linkedin"></i></a>
+            <a href="#" style="color: white; font-size: 1.5rem; transition: 0.3s;"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p style="font-size: 0.85rem; opacity: 0.6;">&copy; 2025 Sameera N. Designed for Excellence.</p>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
